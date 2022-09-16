@@ -1,0 +1,8 @@
+rootProject.name = 'fasid-automation'
+include 'framework'
+include 'commons'
+include 'slack-utils'
+include 'commons'
+include 'slack-utils'
+include 'fasid-greenkart-ui'
+

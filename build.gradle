@@ -1,0 +1,41 @@
+plugins {
+    id 'java-library'
+}
+
+group 'com.fasid.automation'
+version '1.0-SNAPSHOT'
+
+
+sourceCompatibility = JavaVersion.VERSION_11
+
+
+ext.libraries = [
+        commonsConfig         : 'org.apache.commons:commons-configuration2:2.8.0',
+        testng                : 'org.testng:testng:7.4.0',
+        commons               : 'commons-io:commons-io:2.8.0',
+
+
+        //For Browsers
+        selenium              : 'org.seleniumhq.selenium:selenium-java:4.3.0',
+        webdrivermanager      : 'io.github.bonigarcia:webdrivermanager:4.3.1',
+        appium                : 'io.appium:java-client:8.0.0',
+
+        //API
+        lombok                : 'org.projectlombok:lombok:1.18.12',
+        rest_assured          : 'io.rest-assured:rest-assured:4.4.0',
+        faker                 : 'com.github.javafaker:javafaker:1.0.2',
+        gson                  : 'com.google.code.gson:gson:2.8.6',
+        beanutils             : 'commons-beanutils:commons-beanutils:1.9.4',
+        jackson               : 'com.fasterxml.jackson.core:jackson-core:2.11.2',
+        jackson_annotation    : 'com.fasterxml.jackson.core:jackson-annotation:2.11.2',
+        jackson_databind      : 'com.fasterxml.jackson.core:jackson-databind :2.11.2',
+        jackson_dataformat_xml: 'com.fasterxml.jackson.dataformat_xml:jackson-dataformat_xml :2.11.2',
+        gsoup                 : 'org.jsoup:jsoup:1.12.1',
+        commons_text          : 'org.apache.commons:commons-text:1.7',
+        okhttp                : 'com.squareup.okhttp3:okhttp:4.9.1',
+
+
+        //logging
+        apache_poi            : 'org.apache.poi:poi-ooxml:3.9'
+
+]

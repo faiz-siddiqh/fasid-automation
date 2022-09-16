@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+}
+
+group 'com.fasid.automation'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility =JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    api libraries.commons
+    api libraries.commonsConfig
+    api libraries.testng
+    api libraries.selenium
+    api libraries.appium
+    api libraries.webdrivermanager
+    api libraries.faker
+
+
+    annotationProcessor libraries.lombok
+}
+
+
+test{
+    doFirst{
+        systemProperties System.properties
+    }
+}
