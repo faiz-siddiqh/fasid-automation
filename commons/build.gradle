@@ -24,9 +24,10 @@ dependencies {
     api libraries.gson
     api libraries.jackson
     api libraries.jackson_annotation
-    api libraries.okhttp
-    implementation 'org.projectlombok:lombok:1.18.22'
+    api libraries.jackson_databind
+    api libraries.lombok
 
+    api libraries.okhttp
 
     annotationProcessor libraries.lombok
 }

@@ -43,3 +43,5 @@ bin/
 *.png
 *.jpg
 details.json
+
+/.idea
