@@ -20,6 +20,12 @@ dependencies {
     api libraries.appium
     api libraries.webdrivermanager
     api libraries.faker
+    api libraries.rest_assured
+    api libraries.gson
+    api libraries.jackson
+    api libraries.jackson_annotation
+    api libraries.okhttp
+    implementation 'org.projectlombok:lombok:1.18.22'
 
 
     annotationProcessor libraries.lombok

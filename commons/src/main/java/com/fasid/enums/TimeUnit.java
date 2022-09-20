@@ -18,7 +18,6 @@ public enum TimeUnit {
     TimeUnit(String displayName, long timeInSeconds) {
         this.displayName = displayName;
         this.timeInSeconds = timeInSeconds;
-        this.timeInSeconds = timeInSeconds;
     }
 
     static {
