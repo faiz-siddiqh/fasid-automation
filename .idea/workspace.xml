@@ -5,50 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6526f31a-9986-49e0-9856-01c3c8bd4924" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/FakeData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/assertions/Asserts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/assertions/SoftAsserts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/config/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/config/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/enums/BrowserTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/enums/ContentType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/enums/MethodType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/enums/Run.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/enums/TimeUnit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/groups/TestGroups.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/logger/TestLogger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/utils/FileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fasid-greenkart-ui/src/main/java/com/fasid/greenkart/AbstractFasidUITest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fasid-greenkart-ui/src/main/java/com/fasid/greenkart/GreenkartBaseUITest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fasid-greenkart-ui/src/main/java/com/fasid/greenkart/actions/GreenkartLoginActions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fasid-greenkart-ui/src/main/java/com/fasid/greenkart/pages/GrenkartBasePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fasid-greenkart-ui/src/test/java/com/fasid/greenkart/tests/homepage/GreenkartHomePageTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fasid-greenkart-ui/src/test/resources/qa.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/BrowserInit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/WebDriverThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/actions/AbstractActions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/browsers/Browser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/browsers/HasService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/browsers/desktop/Chrome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/browsers/desktop/Firefox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/listeners/retry/RetryTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/listeners/retry/RetryTestsListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/utils/BrowserAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/fasid/core/ui/waits/Waits.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle..properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commons/src/main/java/com/fasid/api/response/GraphlqlResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
