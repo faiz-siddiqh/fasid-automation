@@ -45,3 +45,4 @@ bin/
 details.json
 
 /.idea
+.idea/workspace.xml
