@@ -23,7 +23,7 @@ public class Config {
 
     private static Configuration configuration;
 
-    //This is an example of Sigleton Design Pattern
+    //This is an example of Singleton Design Pattern
     public static Configuration getInstance() throws ConfigurationException {
         if (configuration == null) {
             Configurations configs = new Configurations();
