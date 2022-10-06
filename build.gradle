@@ -33,6 +33,7 @@ ext.libraries = [
         gsoup                 : 'org.jsoup:jsoup:1.12.1',
         commons_text          : 'org.apache.commons:commons-text:1.7',
         okhttp                : 'com.squareup.okhttp3:okhttp:4.9.1',
+        jayway                : 'com.jayway.jsonpath:json-path:2.7.0',
 
 
         //logging
