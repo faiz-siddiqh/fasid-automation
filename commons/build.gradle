@@ -27,7 +27,7 @@ dependencies {
     api libraries.jackson_databind
     api libraries.lombok
     api libraries.jayway
-
+    api libraries.json
     api libraries.okhttp
 
     annotationProcessor libraries.lombok

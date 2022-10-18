@@ -1,10 +1,9 @@
 package com.fasid.api.request;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 import lombok.Setter;
 
-@NoArgsConstructor
 public class GraphqlDto<Q, V> {
 
     @Getter
@@ -16,6 +15,11 @@ public class GraphqlDto<Q, V> {
     @Getter
     @Setter
     private String operationName;
+
+    public GraphqlDto(Q query, V variables) {
+        this.query = query;
+        this.variables = variables;
+    }
 
     @Override
     public String toString() {

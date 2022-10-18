@@ -5,4 +5,5 @@ include 'slack-utils'
 include 'commons'
 include 'slack-utils'
 include 'fasid-greenkart-ui'
+include 'fasid-github-api'
 

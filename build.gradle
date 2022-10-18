@@ -34,7 +34,7 @@ ext.libraries = [
         commons_text          : 'org.apache.commons:commons-text:1.7',
         okhttp                : 'com.squareup.okhttp3:okhttp:4.9.1',
         jayway                : 'com.jayway.jsonpath:json-path:2.7.0',
-
+        json                  : 'org.json:json:20090211',
 
         //logging
         apache_poi            : 'org.apache.poi:poi-ooxml:3.9'
