@@ -1,18 +1,33 @@
 package com.fasid.api.dto.GithubUserDTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.ArrayList;
 
-import java.util.Map;
+public class UserRepositoryDTO {
 
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserRepositioryDTO {
+    ArrayList<Nodes> nodes;
 
-    Map<String,String> repoNames;
+
+    public ArrayList<Nodes> getNodes() {
+        return this.nodes;
+    }
+
+    public void setNodes(ArrayList<Nodes> nodes) {
+        this.nodes = nodes;
+    }
+
+
+    public class Nodes {
+        public String name;
+
+        public String getName() {
+            return this.name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 
 }
+
+
