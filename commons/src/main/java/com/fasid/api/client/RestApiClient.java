@@ -37,7 +37,7 @@ public class RestApiClient {
                 } else {
                     content = (String) requestSpecification.getContentObj();
                 }
-                requestSpecification.addContentObj(content);
+                requestSpecification.addContent(content);
             }
 
         }
@@ -143,8 +143,9 @@ public class RestApiClient {
         if (response != null) {
             fasidResponse.setResponseTime(responseTime);
 
-            if (response.body() != null)
-                fasidResponse.setResponseBody(response.getBody().toString());
+            if (response.getBody() != null) {
+                fasidResponse.setResponseBody(response.asPrettyString());
+            }
 
             fasidResponse.setStatusCode(response.getStatusCode());
             fasidResponse.setStatusLine(response.getStatusLine());

@@ -18,14 +18,6 @@ public class FasidResponse {
     private Map<String, String> cookies;
     private Map<String, String> headers;
 
-    public Integer getStatusCode() {
-        return this.statusCode;
-    }
-
-    public String getResponseBody() {
-        return this.responseBody;
-    }
-
     @Override
     public String toString() {
         return "Response{"
