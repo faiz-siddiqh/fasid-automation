@@ -1,0 +1,9 @@
+query Query($last: Int) {
+  viewer {
+    repositories(last: $last) {
+      nodes {
+        name
+      }
+    }
+  }
+}
