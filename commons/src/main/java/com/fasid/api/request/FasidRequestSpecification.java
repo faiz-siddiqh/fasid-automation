@@ -23,7 +23,7 @@ public class FasidRequestSpecification {
     @Getter
     private Map<String, String> headers;
     @Getter
-    private Map<String, String> queryParams = new HashMap<>();
+    private Map<String, Object> queryParams ;
     @Getter
     private Object contentObj;
     private boolean followRedirect = true;
@@ -94,7 +94,10 @@ public class FasidRequestSpecification {
         return this;
     }
 
-    public FasidRequestSpecification addQueryParameter(String key, String value) {
+    public FasidRequestSpecification addQueryParameter(String key, Object value) {
+        if (!Objects.nonNull(queryParams)) {
+            queryParams = new HashMap<>();
+        }
         this.queryParams.put(key, value);
         return this;
     }
