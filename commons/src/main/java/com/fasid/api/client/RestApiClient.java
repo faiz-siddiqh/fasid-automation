@@ -55,7 +55,7 @@ public class RestApiClient {
 
   
     private final FasidResponse baseRestImpl(MethodType requestType, String baseUrl, Map<String, String> cookies, Map<String, String> headers,
-                                             Map<String, String> queryParams, ContentType contentType, String content) {
+                                             Map<String, Object> queryParams, ContentType contentType, String content) {
 
         RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
         RequestSpecification requestSpecification;
