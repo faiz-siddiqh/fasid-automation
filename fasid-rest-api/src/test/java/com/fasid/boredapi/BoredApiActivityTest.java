@@ -3,6 +3,7 @@ package com.fasid.boredapi;
 import com.fasid.boredapi.actions.ActivityActions;
 import com.fasid.boredapi.dto.ActivityDTO;
 import com.fasid.assertions.Asserts;
+import com.fasid.dataproviders.boredapi.BoredApiDataProvider;
 import com.fasid.enums.MethodType;
 import com.fasid.BaseApiTest;
 import org.testng.annotations.Test;
@@ -42,5 +43,17 @@ public class BoredApiActivityTest extends BaseApiTest {
 
     }
 
+    @Test(testName = "Fetch Random Activity of given type",
+            dataProvider = "getActivityType",
+            dataProviderClass = BoredApiDataProvider.class)
+    public void getRandomActivityByType(String activityType) {
 
+        ActivityDTO activityDTO = new ActivityActions()
+                .getActivityByTypeSpec(MethodType.GET, ActivityDTO.class, activityType);
+
+        Asserts
+                .assertEquals(activityType, activityDTO.getType(), "Error !! Incorrect Activity type");
+
+
+    }
 }
