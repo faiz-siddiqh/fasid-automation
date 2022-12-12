@@ -10,7 +10,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/commons" />
+            <option value="$PROJECT_DIR$/fasid-github-api" />
             <option value="$PROJECT_DIR$/fasid-greenkart-ui" />
+            <option value="$PROJECT_DIR$/fasid-rest-api" />
             <option value="$PROJECT_DIR$/framework" />
             <option value="$PROJECT_DIR$/slack-utils" />
           </set>

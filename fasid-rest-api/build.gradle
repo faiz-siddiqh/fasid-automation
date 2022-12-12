@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group 'com.fasid.automation'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation project(":framework")
+    implementation project(":commons")
+    testImplementation 'org.testng:testng:7.1.0'
+
+}
+
+test {
+    doFirst {
+        systemProperties System.properties
+    }
+
+    useTestNG {
+        useDefaultListeners = false
+        outputDirectory = file("$buildDir/test-output")
+        options {
+            parallel System.getProperty("parallel", "classes").toString()
+            threadCount System.getProperty("threads", "1").toInteger()
+            if (System.getProperty("includeGroups") != null) {
+                includeGroups System.getProperty("includeGroups").toString()
+            }
+            if (System.getProperty("excludeGroups") != null) {
+                includeGroups System.getProperty("exclude").toString()
+            }
+
+            listeners <<"com.fasid.core.ui.listeners.retry.RetryTestsListener"
+
+        }
+    }
+
+}
