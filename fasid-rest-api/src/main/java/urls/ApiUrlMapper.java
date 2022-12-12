@@ -2,8 +2,7 @@ package urls;
 
 public enum ApiUrlMapper {
 
-    ACTIVITY("api/activity/"),
-    ACTIVITY_BY_KEY("api/activity");
+    ACTIVITY("api/activity/");
 
 
     String url;
