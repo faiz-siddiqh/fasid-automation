@@ -105,6 +105,10 @@ public class Config {
         return getProperty(BASEURL);
     }
 
+    public static String getAppUrl() {
+
+        return getProperty(APPURL);
+    }
 
     public static boolean isMobileEmulated() {
         if (System.getProperty(MOBILE_EMULATED) != null && !System.getProperty(MOBILE_EMULATED).isEmpty()) {
