@@ -188,11 +188,11 @@ public class Config {
         return "localhost";
     }
 
-    public static String getGithubToken() {
+    public static String getToken() {
 
         if (Objects.nonNull(System.getenv("TOKEN")))
             return System.getenv("TOKEN");
 
-        return getProperty(GITHUB_TOKEN);
+        return getProperty(TOKEN);
     }
 }

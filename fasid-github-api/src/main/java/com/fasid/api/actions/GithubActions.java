@@ -15,7 +15,7 @@ public class GithubActions {
     private RestApiClient apiClient = new RestApiClient();
 
     public static String getToken() {
-        return "bearer " + Config.getGithubToken();
+        return "bearer " + Config.getToken();
     }
 
     public <T> T getApiResponse(final GraphqlDto content, Class<T> type, String path) {
