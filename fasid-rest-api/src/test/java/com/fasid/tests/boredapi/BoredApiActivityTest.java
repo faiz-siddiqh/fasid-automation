@@ -1,4 +1,4 @@
-package com.fasid.boredapi;
+package com.fasid.tests.boredapi;
 
 import com.fasid.boredapi.actions.ActivityActions;
 import com.fasid.boredapi.dto.ActivityDTO;
