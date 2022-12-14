@@ -6,6 +6,8 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FasidRequestSpecification {
 
@@ -23,7 +25,7 @@ public class FasidRequestSpecification {
     @Getter
     private Map<String, String> headers;
     @Getter
-    private Map<String, Object> queryParams ;
+    private Map<String, Object> queryParams;
     @Getter
     private Object contentObj;
     private boolean followRedirect = true;
@@ -121,4 +123,16 @@ public class FasidRequestSpecification {
     }
 
 
+    public FasidRequestSpecification addQueryParameters(Map<String, Object> newQueryParams) {
+        if (!Objects.nonNull(queryParams)) {
+            this.queryParams = newQueryParams;
+            return this;
+        }
+
+        //Using Streams to concat two maps
+        Map<String, Object> results = Stream.concat(queryParams.entrySet().stream(), newQueryParams.entrySet().stream())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        queryParams = results;
+        return this;
+    }
 }

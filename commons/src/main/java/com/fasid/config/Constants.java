@@ -14,7 +14,7 @@ public class Constants {
 
     static final String MOBILE_EMULATED = "mobile.emulated";
 
-    static final String GITHUB_TOKEN = "token";
+    static final String TOKEN = "token";
 
 
 }
