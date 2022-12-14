@@ -6,13 +6,13 @@ import com.fasid.api.response.FasidResponse;
 import com.fasid.config.Config;
 import com.fasid.enums.MethodType;
 import com.fasid.utils.JsonUtils;
+import com.jayway.jsonpath.JsonPath;
 import io.restassured.http.ContentType;
 import urls.WeatherUrlMapper;
 
-import java.util.Arrays;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * An Interface for common methods to be extended by all API actions class for common methods
@@ -61,6 +61,11 @@ public interface BaseActions<T extends BaseActions> {
 
         return JsonUtils.convertResponseToPOJOList(response.getResponseBody(), dtoType);
 
+    }
+
+    default String getMessageFromResponse(FasidResponse response) {
+
+        return JsonPath.read(response.getResponseBody(), "$.message");
     }
 
 
