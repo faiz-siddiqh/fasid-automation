@@ -1,0 +1,36 @@
+name: Java CI with Checkstyle
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Set up environment
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+
+      - name: Build with Gradle
+        run: gradle build
+
+      - name: Run Checkstyle
+        run: gradle clean checkstyleMain
+
+      - name: Checkstyle Reviewdog
+        uses: reviewdog/action-checkstyle@v1
+        with:
+          github_token: ${{ secrets.MY_TOKEN }}
+          reporter: github-pr-review
