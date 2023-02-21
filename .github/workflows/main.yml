@@ -27,8 +27,8 @@ jobs:
       - name: Run Checkstyle
         run: gradle clean checkstyleMain
 
-      - name: Checkstyle Reviewdog
-        uses: reviewdog/action-checkstyle@v1
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          reporter: github-pr-review
+#       - name: Checkstyle Reviewdog
+#         uses: reviewdog/action-checkstyle@v1
+#         with:
+#           github_token: ${{ secrets.MY_TOKEN }}
+#           reporter: github-pr-review
