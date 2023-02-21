@@ -22,10 +22,10 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Build with Gradle
-        run: gradle build
+      - name: Gradle Build
+        run: gradle compileJava compileTestJava
 
-      - name: Run Checkstyle
+      - name: Run Checkstyles
         run: gradle clean checkstyleMain
 
 #       - name: Checkstyle Reviewdog
