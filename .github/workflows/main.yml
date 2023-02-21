@@ -9,7 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,10 +20,6 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-
-      - name: Set up environment
-        env:
-          MY_GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
 
       - name: Build with Gradle
         run: gradle build
