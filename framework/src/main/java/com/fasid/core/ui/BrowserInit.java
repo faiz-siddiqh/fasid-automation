@@ -5,18 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.fasid.config.Config;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.xml.XmlTest;
 
-import org.apache.commons.configuration2.ex.ConfigurationException;
-
 public class BrowserInit {
-
-    private BrowserInit() {
-        //private constructor to avoid instantiation
-    }
 
     private static ThreadLocal<WebDriverThread> primaryThreadLocalDriver;
     private static ThreadLocal<WebDriverThread> secondThreadLocalDriver;

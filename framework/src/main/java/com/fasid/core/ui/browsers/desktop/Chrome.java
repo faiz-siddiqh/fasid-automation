@@ -86,7 +86,7 @@ public class Chrome implements Browser<Capabilities>, HasService<WebDriver, Driv
     }
 
     @Override
-    public WebDriver getLocalDriver(DriverService service, Capabilities capabilities) {
+    public WebDriver getLocalDriver(final DriverService service,final Capabilities capabilities) {
         return new ChromeDriver((ChromeDriverService) service, (ChromeOptions) capabilities);
     }
 

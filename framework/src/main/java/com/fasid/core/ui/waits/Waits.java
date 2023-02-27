@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
+import static com.fasid.core.ui.BrowserInit.getDriver;
 import com.fasid.config.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
-import static com.fasid.core.ui.BrowserInit.getDriver;
 
 public class Waits {
 
@@ -29,7 +28,7 @@ public class Waits {
                 .ignoring(NoSuchElementException.class);
     }
 
-    public Waits(final WebDriver driver,final Duration seconds,final Duration pollingSeconds) {
+    public Waits(final WebDriver driver, final Duration seconds, final Duration pollingSeconds) {
         wait = new FluentWait<>(getDriver())
                 .withTimeout(seconds)
                 .pollingEvery(pollingSeconds)
@@ -44,8 +43,9 @@ public class Waits {
     }
 
     public static Waits getInstance() {
-        if (Objects.isNull(INSTANCE))
+        if (Objects.isNull(INSTANCE)) {
             INSTANCE = new Waits();
+        }
 
         return INSTANCE;
     }
@@ -77,7 +77,7 @@ public class Waits {
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
     }
 
-    public Boolean forPresenceOfElementWithText(final WebElement element,final String elementText) {
+    public Boolean forPresenceOfElementWithText(final WebElement element, final String elementText) {
         return wait.until(ExpectedConditions.textToBePresentInElement(element, elementText));
     }
 
@@ -125,7 +125,7 @@ public class Waits {
         return wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
     }
 
-    public List<WebElement> forNumberOfElementsToBe(final By element,final int size) {
+    public List<WebElement> forNumberOfElementsToBe(final By element, final int size) {
         return wait.until(ExpectedConditions.numberOfElementsToBe(element, size));
     }
 
@@ -133,7 +133,7 @@ public class Waits {
         return wait.until(ExpectedConditions.attributeContains(element, attribute, value));
     }
 
-    public Boolean awaitForElementToBeDisplayed(final By element,final int seconds) {
+    public Boolean awaitForElementToBeDisplayed(final By element, final int seconds) {
         try {
             waitForElementVisibilityByCss(element, Duration.ofSeconds(seconds));
             return true;
@@ -142,7 +142,7 @@ public class Waits {
         }
     }
 
-    private WebElement waitForElementVisibilityByCss(final By element,final Duration ofSeconds) {
+    private WebElement waitForElementVisibilityByCss(final By element, final Duration ofSeconds) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
@@ -155,7 +155,7 @@ public class Waits {
         }
     }
 
-    public void forSometime(long seconds) {
+    public void forSometime(final long seconds) {
 
         try {
             Thread.sleep(seconds);

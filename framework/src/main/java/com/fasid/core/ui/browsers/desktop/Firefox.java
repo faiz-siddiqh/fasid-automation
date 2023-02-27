@@ -7,18 +7,15 @@ import java.util.Objects;
 import com.fasid.config.Config;
 import com.fasid.core.ui.browsers.Browser;
 import com.fasid.core.ui.browsers.HasService;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.GeckoDriverService;
-
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.service.DriverService;
 
@@ -73,7 +70,7 @@ public class Firefox implements Browser<Capabilities>, HasService<WebDriver, Dri
     }
 
     @Override
-    public WebDriver getLocalDriver(DriverService service, Capabilities capabilities) {
+    public WebDriver getLocalDriver(final DriverService service, final Capabilities capabilities) {
         return new FirefoxDriver((GeckoDriverService) service, (FirefoxOptions) capabilities);
     }
 

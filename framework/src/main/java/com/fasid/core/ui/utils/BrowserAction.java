@@ -118,7 +118,7 @@ public class BrowserAction {
     }
 
     public Map<String, Object> getLocalStorage() {
-        String jsScript = "return window.localStorage";
+        final String jsScript = "return window.localStorage";
 
         return (Map<String, Object>) executeJS(jsScript);
     }
@@ -246,7 +246,7 @@ public class BrowserAction {
     }
 
     public BrowserAction ctrlKeyStroke() {
-        Keys CtrlKey = (System.getProperty("os.name").toLowerCase().contains("mac"))
+        final Keys CtrlKey = (System.getProperty("os.name").toLowerCase().contains("mac"))
                 ? Keys.COMMAND
                 : Keys.CONTROL;
 

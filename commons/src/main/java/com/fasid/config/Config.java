@@ -4,14 +4,13 @@ import java.io.File;
 import java.time.Duration;
 import java.util.Objects;
 
+import static com.fasid.config.Constants.*;
+
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
-
 import com.fasid.enums.BrowserTypes;
 import com.fasid.enums.Run;
-
-import static com.fasid.config.Constants.*;
 
 public class Config {
 

@@ -92,7 +92,6 @@ public class RestApiClient {
 
         final long responseTime = endTime - startTime;
 
-
         return processResponse(response, responseTime);
     }
 
@@ -106,7 +105,7 @@ public class RestApiClient {
 
         RestAssured.config = RestAssuredConfig.config().sslConfig(sslConfig);
 
-        RestAssuredConfig config = RestAssured.config()
+        final RestAssuredConfig config = RestAssured.config()
                 .redirect(redirectConfig)
                 .sslConfig(sslConfig);
 
@@ -127,7 +126,6 @@ public class RestApiClient {
                 default:
                     throw new RuntimeException("Invalid !!Please check RequestType -" + requestType);
             }
-
 
         } catch (Exception exception) {
             exception.printStackTrace();
