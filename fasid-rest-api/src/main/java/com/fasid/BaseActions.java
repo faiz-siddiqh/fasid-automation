@@ -1,5 +1,8 @@
 package com.fasid;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fasid.api.client.RestApiClient;
 import com.fasid.api.request.FasidRequestSpecification;
 import com.fasid.api.response.FasidResponse;
@@ -9,10 +12,6 @@ import com.fasid.utils.JsonUtils;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.http.ContentType;
 import urls.WeatherUrlMapper;
-
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * An Interface for common methods to be extended by all API actions class for common methods
@@ -24,7 +23,7 @@ public interface BaseActions<T extends BaseActions> {
     @Deprecated
     default <T> T getApiResponse(MethodType type, FasidRequestSpecification requestSpecification, Class<T> dto) {
 
-        FasidResponse response = new RestApiClient()
+        final FasidResponse response = new RestApiClient()
                 .executeRequest(type, requestSpecification);
 
         return JsonUtils.jsonToDto(response.getResponseBody(), dto);
@@ -33,14 +32,14 @@ public interface BaseActions<T extends BaseActions> {
 
     default <T> T getApiResponse(MethodType type, Class<T> dtoType, Map<String, Object> queryParams) {
 
-        FasidRequestSpecification requestSpecification = new FasidRequestSpecification()
+        final FasidRequestSpecification requestSpecification = new FasidRequestSpecification()
                 .addBaseUrl(Config.getAppUrl() + WeatherUrlMapper.WEATHER.getUrl())
                 .setContentType(ContentType.JSON)
                 .addQueryParameter("appid", Config.getToken())
                 .addQueryParameters(queryParams)
                 .build();
 
-        FasidResponse response = new RestApiClient()
+        final FasidResponse response = new RestApiClient()
                 .executeRequest(type, requestSpecification);
 
         return JsonUtils.jsonToDto(response.getResponseBody(), dtoType);
@@ -49,14 +48,14 @@ public interface BaseActions<T extends BaseActions> {
 
     default <T> List<T> getApiListResponse(MethodType type, Class<T> dtoType, Map<String, Object> queryParams) {
 
-        FasidRequestSpecification requestSpecification = new FasidRequestSpecification()
+        final FasidRequestSpecification requestSpecification = new FasidRequestSpecification()
                 .addBaseUrl(Config.getAppUrl() + WeatherUrlMapper.WEATHER.getUrl())
                 .setContentType(ContentType.JSON)
                 .addQueryParameter("appid", Config.getToken())
                 .addQueryParameters(queryParams)
                 .build();
 
-        FasidResponse response = new RestApiClient()
+        final FasidResponse response = new RestApiClient()
                 .executeRequest(type, requestSpecification);
 
         return JsonUtils.convertResponseToPOJOList(response.getResponseBody(), dtoType);
@@ -67,6 +66,5 @@ public interface BaseActions<T extends BaseActions> {
 
         return JsonPath.read(response.getResponseBody(), "$.message");
     }
-
-
+    
 }

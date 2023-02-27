@@ -1,7 +1,9 @@
 package com.fasid.config;
 
 public class Constants {
-
+    private Constants() {
+        //private constructor to avoid instantiation
+    }
 
     static final String HEADLESS = "headless.state";
     static final String HUB_PORT = "hub.port";

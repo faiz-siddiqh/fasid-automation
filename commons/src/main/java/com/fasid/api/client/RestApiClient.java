@@ -1,5 +1,8 @@
 package com.fasid.api.client;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.fasid.api.request.FasidRequestSpecification;
 import com.fasid.api.response.FasidResponse;
 import com.fasid.enums.MethodType;
@@ -14,9 +17,6 @@ import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RestApiClient {
 
     private boolean debug = true;
@@ -26,12 +26,11 @@ public class RestApiClient {
     private boolean followRedirect = true;
     private boolean allowCircularRedirect = true;
 
-    public FasidResponse executeRequest(MethodType requestType, FasidRequestSpecification requestSpecification) {
-
+    public FasidResponse executeRequest(final MethodType requestType, final FasidRequestSpecification requestSpecification) {
 
         if (requestSpecification.getContentObj() != null) {
             if (requestSpecification.getContentType().equals(ContentType.JSON)) {
-                String content;
+                final String content;
                 if (!(requestSpecification.getContentObj() instanceof String)) {
                     content = new Gson().toJson(requestSpecification.getContentObj());
                 } else {
@@ -41,68 +40,72 @@ public class RestApiClient {
             }
 
         }
-        if (!requestSpecification.shouldAllowRedirect())
+        if (!requestSpecification.shouldAllowRedirect()) {
             followRedirect = false;
+        }
 
-        if (!requestSpecification.shouldAllowCircularRedirect())
+        if (!requestSpecification.shouldAllowCircularRedirect()) {
             allowCircularRedirect = false;
-
+        }
 
         return baseRestImpl(requestType, requestSpecification.getBaseUrl(), requestSpecification.getCookies()
                 , requestSpecification.getHeaders(), requestSpecification.getQueryParams()
                 , requestSpecification.getContentType(), requestSpecification.getContent());
     }
 
-  
-    private final FasidResponse baseRestImpl(MethodType requestType, String baseUrl, Map<String, String> cookies, Map<String, String> headers,
-                                             Map<String, Object> queryParams, ContentType contentType, String content) {
+    private final FasidResponse baseRestImpl(final MethodType requestType, final String baseUrl, final Map<String, String> cookies, final Map<String, String> headers,
+                                             final Map<String, Object> queryParams, final ContentType contentType, final String content) {
 
-        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
-        RequestSpecification requestSpecification;
+        final RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
+        final RequestSpecification requestSpecification;
 
-        if (cookies != null && !cookies.isEmpty())
+        if (cookies != null && !cookies.isEmpty()) {
             requestSpecBuilder.addCookies(cookies);
+        }
 
-        if (headers != null && !headers.isEmpty())
+        if (headers != null && !headers.isEmpty()) {
             requestSpecBuilder.addHeaders(headers);
+        }
 
-        if (queryParams != null && !queryParams.isEmpty())
+        if (queryParams != null && !queryParams.isEmpty()) {
             requestSpecBuilder.addQueryParams(queryParams);
+        }
 
-        if (contentType != null)
+        if (contentType != null) {
             requestSpecBuilder.setContentType(contentType);
+        }
 
-        if (content != null)
+        if (content != null) {
             requestSpecBuilder.setBody(content);
+        }
 
-        if (debug)
+        if (debug) {
             requestSpecification = requestSpecBuilder.build().log().all();
-        else
+        } else {
             requestSpecification = requestSpecBuilder.build();
+        }
 
-        long startTime = System.currentTimeMillis();
-        Response response;
+        final long startTime = System.currentTimeMillis();
+        final Response response;
         response = execute(baseUrl, requestType, requestSpecification);
-        long endTime = System.currentTimeMillis();
+        final long endTime = System.currentTimeMillis();
 
-        long responseTime = endTime - startTime;
-
+        final long responseTime = endTime - startTime;
 
         return processResponse(response, responseTime);
     }
 
-
-    private Response execute(String baseUrl, MethodType requestType, RequestSpecification requestSpecification) {
+    private Response execute(final String baseUrl, final MethodType requestType, final RequestSpecification requestSpecification) {
 
         Response response = null;
 
-        RedirectConfig redirectConfig = new RedirectConfig().followRedirects(followRedirect)
+        final RedirectConfig redirectConfig = new RedirectConfig().followRedirects(followRedirect)
                 .allowCircularRedirects(allowCircularRedirect);
-        SSLConfig sslConfig = SSLConfig.sslConfig().relaxedHTTPSValidation(PROTOCOL_VERSION);
+        final SSLConfig sslConfig = SSLConfig.sslConfig().relaxedHTTPSValidation(PROTOCOL_VERSION);
 
         RestAssured.config = RestAssuredConfig.config().sslConfig(sslConfig);
 
-        RestAssuredConfig config = RestAssured.config()
+        final RestAssuredConfig config = RestAssured.config()
                 .redirect(redirectConfig)
                 .sslConfig(sslConfig);
 
@@ -124,21 +127,19 @@ public class RestApiClient {
                     throw new RuntimeException("Invalid !!Please check RequestType -" + requestType);
             }
 
-
         } catch (Exception exception) {
             exception.printStackTrace();
         }
 
-        if (debug)
+        if (debug) {
             response.prettyPrint();
-
+        }
 
         return response;
     }
 
-
-    private FasidResponse processResponse(Response response, long responseTime) {
-        FasidResponse fasidResponse = new FasidResponse();
+    private FasidResponse processResponse(final Response response, final long responseTime) {
+        final FasidResponse fasidResponse = new FasidResponse();
 
         if (response != null) {
             fasidResponse.setResponseTime(responseTime);
@@ -152,7 +153,7 @@ public class RestApiClient {
             fasidResponse.setCookies(response.getCookies());
 
             if (response.getHeaders() != null && response.getHeaders().size() > 0) {
-                Map<String, String> responseHeaders = new HashMap<>();
+                final Map<String, String> responseHeaders = new HashMap<>();
                 for (Header header : response.getHeaders()) {
                     responseHeaders.put(header.getName().toLowerCase(), header.getValue());
                 }

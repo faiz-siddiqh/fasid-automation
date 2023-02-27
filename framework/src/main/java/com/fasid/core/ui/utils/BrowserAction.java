@@ -1,15 +1,14 @@
 package com.fasid.core.ui.utils;
 
-import com.fasid.core.ui.BrowserInit;
-import com.fasid.core.ui.WebDriverThread;
-import com.fasid.core.ui.waits.Waits;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-
 import java.io.File;
 import java.time.Duration;
 import java.util.*;
 import java.util.stream.Stream;
+
+import com.fasid.core.ui.BrowserInit;
+import com.fasid.core.ui.waits.Waits;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 
 public class BrowserAction {
 
@@ -47,10 +46,10 @@ public class BrowserAction {
 
     }
 
-    private BrowserAction switchToChildWindow(WebDriver driver) {
-        String currentWindowHandle = driver.getWindowHandle();
+    private BrowserAction switchToChildWindow(final WebDriver driver) {
+        final String currentWindowHandle = driver.getWindowHandle();
 
-        Set<String> allWindowHandles = driver.getWindowHandles();
+        final Set<String> allWindowHandles = driver.getWindowHandles();
 
         for (String eachWindowHandle : allWindowHandles) {
             if (!currentWindowHandle.equalsIgnoreCase(eachWindowHandle)) {
@@ -62,14 +61,14 @@ public class BrowserAction {
     }
 
     public BrowserAction createAndSwitchToNewTab() {
-        String mainWindowHandle = driver.getWindowHandle();
+        final String mainWindowHandle = driver.getWindowHandle();
         js.executeScript("window.open()");
         switchToChildWindow();
         return this;
     }
 
     public BrowserAction closeAllTabs() {
-        String parentHandle = driver.getWindowHandle();
+        final String parentHandle = driver.getWindowHandle();
 
         for (String eachWindowHandle : driver.getWindowHandles()) {
             if (!eachWindowHandle.equalsIgnoreCase(parentHandle)) {
@@ -91,85 +90,80 @@ public class BrowserAction {
     ------------------------------------------JS Actions-----------------------------------------------
      */
 
-    public BrowserAction jsClick(WebElement element) {
+    public BrowserAction jsClick(final WebElement element) {
 
         js.executeScript("arguments[0]dispatchEvent(new MouseEvent('click;,{'bubble':true}));", element);
         return this;
     }
 
-    public BrowserAction jsClick(By element) {
+    public BrowserAction jsClick(final By element) {
 
         jsClick(driver.findElement(element));
         return this;
     }
 
-    public <T> T executeJS(String jsScript) {
+    public <T> T executeJS(final String jsScript) {
         return (T) js.executeScript(jsScript);
 
     }
 
-    public <T> T executeJS(String jsScript, Objects... args) {
+    public <T> T executeJS(final String jsScript, final Objects... args) {
         return (T) js.executeScript(jsScript, args);
 
     }
 
-    public <T> T executeJSAsync(String jsScript) {
+    public <T> T executeJSAsync(final String jsScript) {
         return (T) js.executeAsyncScript(jsScript);
 
     }
 
     public Map<String, Object> getLocalStorage() {
-        String jsScript = "return window.localStorage";
+        final String jsScript = "return window.localStorage";
 
         return (Map<String, Object>) executeJS(jsScript);
     }
 
-    public BrowserAction jsScrollToView(WebElement element) {
+    public BrowserAction jsScrollToView(final WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
         return this;
     }
 
-    public BrowserAction scrollToViewSmoothly(WebElement element) {
+    public BrowserAction scrollToViewSmoothly(final WebElement element) {
         final String jsScript = "arguments[0].scrollToView{behavior:\"smooth\",block:\"center\",inline:\"center\"});";
         js.executeScript(jsScript, element);
         return this;
     }
 
-    public boolean hasScrollBar(WebElement element) {
+    public boolean hasScrollBar(final WebElement element) {
 
         return (Boolean) js.executeScript("return arguments[0].scrollHeight>arguments[0].offsetHeight;", element);
     }
 
     public BrowserAction scrollBy() {
-        String jsScript = "window.scrollBy(0,window.innerHeight);";
+        final String jsScript = "window.scrollBy(0,window.innerHeight);";
         return executeJS(jsScript);
     }
 
-    public BrowserAction scrollBy(int x, int y) {
-        String jsScript = String.format("window.scrollBy(%x,%y);", x, y);
+    public BrowserAction scrollBy(final int x, final int y) {
+        final String jsScript = String.format("window.scrollBy(%x,%y);", x, y);
         return executeJS(jsScript);
     }
 
     public BrowserAction clearLocalStorage() {
-        String jsScript = "localStorage.clear()";
+        final String jsScript = "localStorage.clear()";
         return executeJS(jsScript);
     }
 
     public BrowserAction clearSessionStorage() {
-        String jsScript = "sessionStorage.clear()";
+        final String jsScript = "sessionStorage.clear()";
         return executeJS(jsScript);
     }
-
-
-
-
-
 
     /*
     -----------------------------------------------------------INTERACTIIONS------------------------------------------------
      */
 
-    public BrowserAction mouseHover(WebElement element) {
+    public BrowserAction mouseHover(final WebElement element) {
 
         actions
                 .get()
@@ -179,7 +173,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction contextClick(WebElement element) {
+    public BrowserAction contextClick(final WebElement element) {
 
         actions
                 .get()
@@ -189,7 +183,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction doubleClick(WebElement element) {
+    public BrowserAction doubleClick(final WebElement element) {
 
         actions
                 .get()
@@ -201,7 +195,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction dragAndDrop(WebElement source, WebElement destination) {
+    public BrowserAction dragAndDrop(final WebElement source, final WebElement destination) {
 
         actions
                 .get()
@@ -211,7 +205,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction dragAndDropBy(WebElement source, int xOffset, int yOffset) {
+    public BrowserAction dragAndDropBy(final WebElement source, final int xOffset, final int yOffset) {
 
         actions
                 .get()
@@ -221,7 +215,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction sendKeysUsingActions(WebElement element, String textToBeSent) {
+    public BrowserAction sendKeysUsingActions(final WebElement element, final String textToBeSent) {
         actions
                 .get()
                 .sendKeys(element, textToBeSent)
@@ -252,7 +246,7 @@ public class BrowserAction {
     }
 
     public BrowserAction ctrlKeyStroke() {
-        Keys CtrlKey = (System.getProperty("os.name").toLowerCase().contains("mac"))
+        final Keys CtrlKey = (System.getProperty("os.name").toLowerCase().contains("mac"))
                 ? Keys.COMMAND
                 : Keys.CONTROL;
 
@@ -265,9 +259,9 @@ public class BrowserAction {
         return this;
     }
 
-    public List<String> getTextFromElements(By element) {
+    public List<String> getTextFromElements(final By element) {
 
-        List<String> list = new ArrayList<>();
+        final List<String> list = new ArrayList<>();
 
         findElements(element)
                 .forEach((webelement) -> {
@@ -277,12 +271,12 @@ public class BrowserAction {
         return list;
     }
 
-    public List<WebElement> findElements(By element) {
+    public List<WebElement> findElements(final By element) {
 
         return driver.findElements(element);
     }
 
-    public BrowserAction actionClick(WebElement element) {
+    public BrowserAction actionClick(final WebElement element) {
         actions
                 .get()
                 .moveToElement(element)
@@ -293,8 +287,7 @@ public class BrowserAction {
         return this;
     }
 
-
-    public BrowserAction performMultiClick(CharSequence keys) {
+    public BrowserAction performMultiClick(final CharSequence keys) {
 
         actions
                 .get()
@@ -309,8 +302,7 @@ public class BrowserAction {
 
     //Implement Select ALL ,Copy ,Paste using the above method
 
-
-    public BrowserAction clickOn(By element) {
+    public BrowserAction clickOn(final By element) {
 
         waits.forElementToBeClickable(element);
         driver.findElement(element).click();
@@ -318,7 +310,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction clickOn(WebElement element) {
+    public BrowserAction clickOn(final WebElement element) {
 
         waits.forElementToBeClickable(element);
         element.click();
@@ -326,21 +318,21 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction clickAndTypeAndWait(By element, String keysToSend) {
+    public BrowserAction clickAndTypeAndWait(final By element, final String keysToSend) {
         clickOn(element)
                 .typeTheValue(element, keysToSend);
 
         return this;
     }
 
-    public BrowserAction clickAndTypeAndWait(WebElement element, String keysToSend) {
+    public BrowserAction clickAndTypeAndWait(final WebElement element, final String keysToSend) {
         clickOn(element)
                 .typeTheValue(element, keysToSend);
 
         return this;
     }
 
-    public BrowserAction typeTheValue(By element, String keysToSend) {
+    public BrowserAction typeTheValue(final By element, final String keysToSend) {
 
         driver.findElement(element).sendKeys(keysToSend);
         waits
@@ -349,7 +341,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction typeTheValue(WebElement element, String keysToSend) {
+    public BrowserAction typeTheValue(final WebElement element, final String keysToSend) {
 
         element.sendKeys(keysToSend);
         waits
@@ -358,14 +350,14 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction clear(By element) {
+    public BrowserAction clear(final By element) {
         driver.findElement(element).clear();
         waits.forSometime(500);
 
         return this;
     }
 
-    public BrowserAction clear(WebElement element) {
+    public BrowserAction clear(final WebElement element) {
 
         Stream.iterate(0, i -> i + 1)
                 .limit(element.getAttribute("value").length())
@@ -376,7 +368,7 @@ public class BrowserAction {
         return this;
     }
 
-    public BrowserAction clearAndTypeAndWait(By element, String valueToSend) {
+    public BrowserAction clearAndTypeAndWait(final By element, final String valueToSend) {
 
         clear(driver.findElement(element))
                 .typeTheValue(element, valueToSend);
@@ -384,18 +376,18 @@ public class BrowserAction {
         return this;
     }
 
-    public boolean areElementsPresent(By element) {
+    public boolean areElementsPresent(final By element) {
 
         return findElements(element).size() > 0;
     }
 
-    public BrowserAction navigateTo(String Url) {
+    public BrowserAction navigateTo(final String Url) {
 
         driver.get(Url);
         return this;
     }
 
-    public int getRandomNumber(int min, int max) {
+    public int getRandomNumber(final int min, final int max) {
 
         return (int) Math.random() * (max - min + 1) + min;
     }
@@ -424,6 +416,5 @@ public class BrowserAction {
 
         return Optional.empty();
     }
-
 
 }

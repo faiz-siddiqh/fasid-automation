@@ -2,7 +2,9 @@ package com.fasid.groups;
 
 public class TestGroups {
 
-
+    private TestGroups() {
+        //private constructor to avoid instantiation
+    }
     //Specific TestGroups for Testcases
 
     public static final String FASID = "fasid";

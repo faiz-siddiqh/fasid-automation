@@ -1,13 +1,13 @@
 package com.fasid.api.request;
 
-import io.restassured.http.ContentType;
-import lombok.Getter;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import io.restassured.http.ContentType;
+import lombok.Getter;
 
 public class FasidRequestSpecification {
 
@@ -31,7 +31,6 @@ public class FasidRequestSpecification {
     private boolean followRedirect = true;
     private boolean allowCircularRedirect = true;
 
-
     public FasidRequestSpecification setHeaderToNull() {
         this.headers = null;
 
@@ -42,12 +41,12 @@ public class FasidRequestSpecification {
         return contentType;
     }
 
-    public FasidRequestSpecification setContentType(ContentType contentType) {
+    public FasidRequestSpecification setContentType(final ContentType contentType) {
         this.contentType = contentType;
         return this;
     }
 
-    public FasidRequestSpecification addBaseUrl(String baseUrl) {
+    public FasidRequestSpecification addBaseUrl(final String baseUrl) {
 
         this.baseUrl = baseUrl;
         return this;
@@ -61,7 +60,7 @@ public class FasidRequestSpecification {
         return followRedirect;
     }
 
-    public FasidRequestSpecification setFollowRedirect(boolean allowRedirection) {
+    public FasidRequestSpecification setFollowRedirect(final boolean allowRedirection) {
         followRedirect = allowRedirection;
         return this;
     }
@@ -70,24 +69,24 @@ public class FasidRequestSpecification {
         return allowCircularRedirect;
     }
 
-    public FasidRequestSpecification addContent(String content) {
+    public FasidRequestSpecification addContent(final String content) {
 
         this.content = content;
         return this;
     }
 
-    public FasidRequestSpecification addContentObj(Object content) {
+    public FasidRequestSpecification addContentObj(final Object content) {
 
         this.contentObj = content;
         return this;
     }
 
-    public FasidRequestSpecification setCookies(Map<String, String> cookies) {
+    public FasidRequestSpecification setCookies(final Map<String, String> cookies) {
         this.cookies = cookies;
         return this;
     }
 
-    public FasidRequestSpecification setHeaders(Map<String, String> headers) {
+    public FasidRequestSpecification setHeaders(final Map<String, String> headers) {
         this.headers = headers;
         return this;
     }
@@ -96,7 +95,7 @@ public class FasidRequestSpecification {
         return this;
     }
 
-    public FasidRequestSpecification addQueryParameter(String key, Object value) {
+    public FasidRequestSpecification addQueryParameter(final String key, final Object value) {
         if (!Objects.nonNull(queryParams)) {
             queryParams = new HashMap<>();
         }
@@ -104,7 +103,7 @@ public class FasidRequestSpecification {
         return this;
     }
 
-    public FasidRequestSpecification addHeader(String key, String value) {
+    public FasidRequestSpecification addHeader(final String key, final String value) {
         if (!Objects.nonNull(headers)) {
             headers = new HashMap<>();
         }
@@ -112,7 +111,7 @@ public class FasidRequestSpecification {
         return this;
     }
 
-    public FasidRequestSpecification addCsrfToken(String csrfToken) {
+    public FasidRequestSpecification addCsrfToken(final String csrfToken) {
         this.csrfToken = csrfToken;
         if (headers == null || headers.isEmpty()) {
             headers = new HashMap<>();
@@ -122,15 +121,14 @@ public class FasidRequestSpecification {
         return this;
     }
 
-
-    public FasidRequestSpecification addQueryParameters(Map<String, Object> newQueryParams) {
+    public FasidRequestSpecification addQueryParameters(final Map<String, Object> newQueryParams) {
         if (!Objects.nonNull(queryParams)) {
             this.queryParams = newQueryParams;
             return this;
         }
 
         //Using Streams to concat two maps
-        Map<String, Object> results = Stream.concat(queryParams.entrySet().stream(), newQueryParams.entrySet().stream())
+        final Map<String, Object> results = Stream.concat(queryParams.entrySet().stream(), newQueryParams.entrySet().stream())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         queryParams = results;
         return this;
