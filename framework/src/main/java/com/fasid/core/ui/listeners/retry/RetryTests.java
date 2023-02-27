@@ -1,10 +1,10 @@
 package com.fasid.core.ui.listeners.retry;
 
+import java.util.logging.Logger;
+
 import com.fasid.config.Config;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
-
-import java.util.logging.Logger;
 
 public class RetryTests implements IRetryAnalyzer {
 
@@ -13,7 +13,7 @@ public class RetryTests implements IRetryAnalyzer {
     private final int maxRetries = Config.quickDebugMode ? 0 : Integer.parseInt(System.getProperty("RETRIES", "1"));
 
     @Override
-    public boolean retry(ITestResult result) {
+    public boolean retry(final ITestResult result) {
 
         //Handle logging and setting params in reporting
         if (retryCount > maxRetries) {

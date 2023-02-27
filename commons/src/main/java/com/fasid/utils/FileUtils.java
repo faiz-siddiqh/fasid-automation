@@ -7,16 +7,15 @@ import java.io.*;
  */
 public class FileUtils {
 
+    public static void deleteFile(final String filePath) {
 
-    public static void deleteFile(String filePath) {
-
-        File file = new File(filePath);
+        final File file = new File(filePath);
 
         if (file.exists()) {
             if (file.isDirectory()) {
-                String[] files = file.list();
+                final String[] files = file.list();
                 for (String eachFile : files) {
-                    File currentFile = new File(file.getPath(), eachFile);
+                    final File currentFile = new File(file.getPath(), eachFile);
                     currentFile.delete();
                 }
             } else {
@@ -29,11 +28,11 @@ public class FileUtils {
 
     }
 
-    public void writeToFile(String data, String filePath) {
+    public void writeToFile(final String data, final String filePath) {
         BufferedWriter output = null;
 
         try {
-            File file = new File(filePath);
+            final File file = new File(filePath);
             if (!file.exists()) {
                 new File(filePath).createNewFile();
             }
@@ -54,10 +53,10 @@ public class FileUtils {
 
     }
 
-    public boolean isFileDownladed(String downloadPath, String fileName) {
-        File dir = new File(downloadPath);
+    public boolean isFileDownladed(final String downloadPath, final String fileName) {
+        final File dir = new File(downloadPath);
 
-        File[] dirContents = dir.listFiles();
+        final File[] dirContents = dir.listFiles();
 
         boolean isDownloaded = false;
 
@@ -72,9 +71,9 @@ public class FileUtils {
         return isDownloaded;
     }
 
-    public static void copyFileToAnotherLocation(String originalLoc, String finalLoc) {
-        File originalFile = new File(originalLoc);
-        File newFile = new File(finalLoc);
+    public static void copyFileToAnotherLocation(final String originalLoc, final String finalLoc) {
+        final File originalFile = new File(originalLoc);
+        final File newFile = new File(finalLoc);
         try {
             org.apache.commons.io.FileUtils.copyFile(originalFile, new File(finalLoc));
         } catch (IOException e) {
@@ -83,9 +82,8 @@ public class FileUtils {
 
     }
 
-
-    public static String readFromAFile(String fileName) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
+    public static String readFromAFile(final String fileName) throws IOException {
+        final StringBuilder stringBuilder = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -96,10 +94,9 @@ public class FileUtils {
 
         }
 
-        byte[] expectedDataToString = stringBuilder.toString().getBytes("UTF-8");
+        final byte[] expectedDataToString = stringBuilder.toString().getBytes("UTF-8");
 
         return new String(expectedDataToString, "UTF-8");
     }
-
 
 }

@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Map;
 
 @NoArgsConstructor
-public class GraphlqlResponse<T> {
+public class GraphqlResponse<T> {
 
     @Getter
     @Setter

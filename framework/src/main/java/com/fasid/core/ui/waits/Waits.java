@@ -1,5 +1,10 @@
 package com.fasid.core.ui.waits;
 
+import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
 import com.fasid.config.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,11 +15,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
-import java.time.Duration;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-
 import static com.fasid.core.ui.BrowserInit.getDriver;
 
 public class Waits {
@@ -22,14 +22,14 @@ public class Waits {
     private static Waits INSTANCE;
     private Wait<WebDriver> wait;
 
-    public Waits(WebDriver driver) {
+    public Waits(final WebDriver driver) {
         wait = new FluentWait<>(getDriver())
                 .withTimeout(Config.getDefaultWaitDuration())
                 .pollingEvery(Config.getDefaultPollingDuration())
                 .ignoring(NoSuchElementException.class);
     }
 
-    public Waits(WebDriver driver, Duration seconds, Duration pollingSeconds) {
+    public Waits(final WebDriver driver,final Duration seconds,final Duration pollingSeconds) {
         wait = new FluentWait<>(getDriver())
                 .withTimeout(seconds)
                 .pollingEvery(pollingSeconds)
@@ -50,20 +50,19 @@ public class Waits {
         return INSTANCE;
     }
 
-    public static void setINSTANCE(WebDriver driver) {
+    public static void setINSTANCE(final WebDriver driver) {
         INSTANCE = new Waits(driver);
     }
 
-
-    public Boolean forStalenessOfElementLocatedBy(WebElement element) {
+    public Boolean forStalenessOfElementLocatedBy(final WebElement element) {
         return wait.until(ExpectedConditions.stalenessOf(element));
     }
 
-    public WebElement forPresenceOfElementLocatedBy(By element) {
+    public WebElement forPresenceOfElementLocatedBy(final By element) {
         return wait.until(ExpectedConditions.presenceOfElementLocated(element));
     }
 
-    public Boolean forPresenceOfElementLocatedByBoolean(By element) {
+    public Boolean forPresenceOfElementLocatedByBoolean(final By element) {
         try {
             forPresenceOfElementLocatedBy(element);
             return true;
@@ -74,67 +73,67 @@ public class Waits {
 
     }
 
-    public List<WebElement> forPresenceOfAllElementLocatedBy(By element) {
+    public List<WebElement> forPresenceOfAllElementLocatedBy(final By element) {
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
     }
 
-    public Boolean forPresenceOfElementWithText(WebElement element, String elementText) {
+    public Boolean forPresenceOfElementWithText(final WebElement element,final String elementText) {
         return wait.until(ExpectedConditions.textToBePresentInElement(element, elementText));
     }
 
-    public Boolean forPresenceOfElementWithTextToBe(By element, String elementText) {
+    public Boolean forPresenceOfElementWithTextToBe(final By element, final String elementText) {
         return wait.until(ExpectedConditions.textToBe(element, elementText));
     }
 
-    public Boolean forUrlToContain(String Url) {
+    public Boolean forUrlToContain(final String Url) {
         return wait.until(ExpectedConditions.urlContains(Url));
     }
 
-    public Boolean forUrMatches(String Url) {
+    public Boolean forUrMatches(final String Url) {
         return wait.until(ExpectedConditions.urlMatches(Url));
     }
 
-    public WebElement forVisibilityOfElementLocatedBy(By element) {
+    public WebElement forVisibilityOfElementLocatedBy(final By element) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
-    public List<WebElement> forVisibilityOfElementsLocatedBy(By element) {
+    public List<WebElement> forVisibilityOfElementsLocatedBy(final By element) {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(element));
     }
 
-    public Boolean waitForExpectedConditionsOr(ExpectedCondition<?>... conditions) {
+    public Boolean waitForExpectedConditionsOr(final ExpectedCondition<?>... conditions) {
         return wait.until(ExpectedConditions.or(conditions));
     }
 
-    public Boolean waitForExpectedConditionsAnd(ExpectedCondition<?>... conditions) {
+    public Boolean waitForExpectedConditionsAnd(final ExpectedCondition<?>... conditions) {
         return wait.until(ExpectedConditions.and(conditions));
     }
 
-    public WebElement forElementToBeClickable(By element) {
+    public WebElement forElementToBeClickable(final By element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public WebElement forElementToBeClickable(WebElement element) {
+    public WebElement forElementToBeClickable(final WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public Boolean forInVisibilityOfElementLocatedBy(By element) {
+    public Boolean forInVisibilityOfElementLocatedBy(final By element) {
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
     }
 
-    public WebDriver forIFrameToLoadAndSwitchToIt(By element) {
+    public WebDriver forIFrameToLoadAndSwitchToIt(final By element) {
         return wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
     }
 
-    public List<WebElement> forNumberOfElementsToBe(By element, int size) {
+    public List<WebElement> forNumberOfElementsToBe(final By element,final int size) {
         return wait.until(ExpectedConditions.numberOfElementsToBe(element, size));
     }
 
-    public Boolean attributeContains(By element, String attribute, String value) {
+    public Boolean attributeContains(final By element, final String attribute, final String value) {
         return wait.until(ExpectedConditions.attributeContains(element, attribute, value));
     }
 
-    public Boolean awaitForElementToBeDisplayed(By element, int seconds) {
+    public Boolean awaitForElementToBeDisplayed(final By element,final int seconds) {
         try {
             waitForElementVisibilityByCss(element, Duration.ofSeconds(seconds));
             return true;
@@ -143,7 +142,7 @@ public class Waits {
         }
     }
 
-    private WebElement waitForElementVisibilityByCss(By element, Duration ofSeconds) {
+    private WebElement waitForElementVisibilityByCss(final By element,final Duration ofSeconds) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
@@ -155,7 +154,6 @@ public class Waits {
             return false;
         }
     }
-
 
     public void forSometime(long seconds) {
 

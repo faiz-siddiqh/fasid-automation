@@ -1,19 +1,19 @@
 package com.fasid.config;
 
-import com.fasid.enums.BrowserTypes;
-import com.fasid.enums.Run;
-import org.apache.commons.configuration2.Configuration;
-import org.apache.commons.configuration2.builder.fluent.Configurations;
-import org.apache.commons.configuration2.ex.ConfigurationException;
-
 import java.io.File;
 import java.time.Duration;
 import java.util.Objects;
 
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.apache.commons.configuration2.ex.ConfigurationException;
+
+import com.fasid.enums.BrowserTypes;
+import com.fasid.enums.Run;
+
 import static com.fasid.config.Constants.*;
 
 public class Config {
-
 
     private static final String HUB_USERNAME = System.getenv("HUB_USERNAME");
     private static final String HUB_ACCESSKEY = System.getenv("HUB_ACCESSKEY");
@@ -23,10 +23,14 @@ public class Config {
 
     private static Configuration configuration;
 
+    private Config() {
+        //private constructor to avoid instantiation
+    }
+
     //This is an example of Singleton Design Pattern
     public static Configuration getInstance() throws ConfigurationException {
         if (configuration == null) {
-            Configurations configs = new Configurations();
+            final Configurations configs = new Configurations();
             configuration = configs.properties(loadPropertiesFile());
         }
 
@@ -35,9 +39,9 @@ public class Config {
 
     private static File loadPropertiesFile() {
 
-        String configFile = getEnvProperties();
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        String configFilePath = Objects.requireNonNull(loader.getResource(configFile)).getPath();
+        final String configFile = getEnvProperties();
+        final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        final String configFilePath = Objects.requireNonNull(loader.getResource(configFile)).getPath();
 
         return new File(configFilePath);
 
@@ -60,7 +64,7 @@ public class Config {
         return Boolean.parseBoolean(getProperty(HEADLESS, "false"));
     }
 
-    public static String getProperty(String property, String defaultValue) {
+    public static String getProperty(final String property, final String defaultValue) {
         if (System.getProperty(property) != null && !System.getProperty(property).isEmpty()) {
             return System.getProperty(property);
         }
@@ -68,7 +72,7 @@ public class Config {
         return defaultValue;
     }
 
-    public static String getProperty(String property) {
+    public static String getProperty(final String property) {
         if (System.getProperty(property) != null && !System.getProperty(property).isEmpty()) {
             return System.getProperty(property);
         }
@@ -81,12 +85,12 @@ public class Config {
     }
 
     public static Duration getDefaultWaitDuration() {
-        long duration = Long.parseLong(getProperty(WAIT_DURATION, "40"));
+        final long duration = Long.parseLong(getProperty(WAIT_DURATION, "40"));
         return Duration.ofSeconds(duration);
     }
 
     public static Duration getDefaultPollingDuration() {
-        long duration = Long.parseLong(getProperty(POLLING_DURATION, "40"));
+        final long duration = Long.parseLong(getProperty(POLLING_DURATION, "40"));
         return Duration.ofSeconds(duration);
     }
 
@@ -125,30 +129,34 @@ public class Config {
     }
 
     public static String determineEffectiveMobileAutomationName() {
-        if (Objects.nonNull(System.getProperty("mobile.automation.name")))
+        if (Objects.nonNull(System.getProperty("mobile.automation.name"))) {
             return System.getProperty("mobile.automation.name");
+        }
 
         return "XCUITest";
     }
 
     public static BrowserTypes determineEffectiveDriver() {
-        if (Objects.nonNull(System.getProperty("browser")))
+        if (Objects.nonNull(System.getProperty("browser"))) {
             return BrowserTypes.valueOf(System.getProperty("browser").toUpperCase());
+        }
 
         return BrowserTypes.CHROME;
     }
 
     public static String determineEffectiveBrowserVersion() {
-        if (Objects.nonNull(System.getProperty("browser.version")))
+        if (Objects.nonNull(System.getProperty("browser.version"))) {
             return System.getProperty("broswer.version");
+        }
 
         return "latest";
     }
 
     public static boolean enableNetworkLog() {
 
-        if (Objects.nonNull(System.getenv("enable.network.log")))
+        if (Objects.nonNull(System.getenv("enable.network.log"))) {
             return Boolean.valueOf(System.getenv("enable.network.log"));
+        }
 
         return false;
     }
@@ -182,17 +190,18 @@ public class Config {
     }
 
     public static String getGridHost() {
-        if (Objects.nonNull(System.getenv("HUB_HOST")))
+        if (Objects.nonNull(System.getenv("HUB_HOST"))) {
             return System.getenv("HUB_HOST");
 
+        }
         return "localhost";
     }
 
     public static String getToken() {
 
-        if (Objects.nonNull(System.getenv("TOKEN")))
+        if (Objects.nonNull(System.getenv("TOKEN"))) {
             return System.getenv("TOKEN");
-
+        }
         return getProperty(TOKEN);
     }
 }

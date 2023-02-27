@@ -15,14 +15,15 @@ public enum TimeUnit {
 
     private static Map<String, TimeUnit> DISPLAY_NAME_TO_TIME = new HashMap<>();
 
-    TimeUnit(String displayName, long timeInSeconds) {
+    TimeUnit(final String displayName, final long timeInSeconds) {
         this.displayName = displayName;
         this.timeInSeconds = timeInSeconds;
     }
 
     static {
-        for (TimeUnit timeUnit : TimeUnit.values())
+        for (TimeUnit timeUnit : TimeUnit.values()) {
             DISPLAY_NAME_TO_TIME.put(timeUnit.displayName, timeUnit);
+        }
     }
 
     public String getDisplayName() {
@@ -37,7 +38,7 @@ public enum TimeUnit {
         return (this.timeInSeconds * 1000);
     }
 
-    public static TimeUnit getTimeUnitFromDisplayName(String displayName) {
+    public static TimeUnit getTimeUnitFromDisplayName(final String displayName) {
         return DISPLAY_NAME_TO_TIME.get(displayName);
     }
 }

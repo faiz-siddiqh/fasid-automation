@@ -1,5 +1,10 @@
 package com.fasid.core.ui;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Objects;
+
 import com.fasid.config.Config;
 import com.fasid.core.ui.browsers.Browser;
 import com.fasid.core.ui.browsers.HasService;
@@ -13,11 +18,6 @@ import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.service.DriverService;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Objects;
-
 public class WebDriverThread {
 
     private WebDriver webDriver;
@@ -26,8 +26,8 @@ public class WebDriverThread {
     public WebDriver getDriver() {
         if (Objects.isNull(webDriver)) {
 
-            Run runType = Config.getTestRunType();
-            BrowserTypes browserTypes = Config.determineEffectiveDriver();
+            final Run runType = Config.getTestRunType();
+            final BrowserTypes browserTypes = Config.determineEffectiveDriver();
 
             browsers = getBrowserObject(browserTypes);
             webDriver = setExecutionStyle(runType);
@@ -40,10 +40,10 @@ public class WebDriverThread {
         return webDriver;
     }
 
-    private WebDriver setExecutionStyle(Run runType) {
+    private WebDriver setExecutionStyle(final Run runType) {
 
-        Capabilities options;
-        DriverService service;
+        final Capabilities options;
+        final DriverService service;
 
         if (runType.equals(Run.MOBILE)) {
             options = browsers.getMobileCapabilities();
@@ -78,7 +78,7 @@ public class WebDriverThread {
         return new URL("https" + Config.getGridHost() + ":" + Config.getGridPort() + "/wd/hub");
     }
 
-    private Browser<Capabilities> getBrowserObject(BrowserTypes browserName) {
+    private Browser<Capabilities> getBrowserObject(final BrowserTypes browserName) {
         switch (browserName) {
             case CHROME:
                 return new Chrome();
