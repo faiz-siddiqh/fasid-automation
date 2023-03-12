@@ -29,6 +29,9 @@ dependencies {
     api libraries.jayway
     api libraries.json
     api libraries.okhttp
+    api libraries.log4j
+    api libraries.log4j_api
+    api libraries.relevantcodes
 
     annotationProcessor libraries.lombok
 }

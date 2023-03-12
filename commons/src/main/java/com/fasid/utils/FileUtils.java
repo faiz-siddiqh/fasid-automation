@@ -99,4 +99,8 @@ public class FileUtils {
         return new String(expectedDataToString, "UTF-8");
     }
 
+    private FileUtils() {
+        //utility files should not be instantiated and should be by default private
+    }
+
 }

@@ -2,6 +2,7 @@ package com.fasid.greenkart.actions;
 
 import com.fasid.config.Config;
 import com.fasid.core.ui.actions.AbstractActions;
+import com.fasid.core.ui.actions.DriverActions;
 import com.fasid.core.ui.utils.BrowserAction;
 import com.fasid.core.ui.waits.Waits;
 
@@ -15,7 +16,7 @@ public class GreenkartLoginActions implements AbstractActions<GreenkartLoginActi
 
     public GreenkartLoginActions() {
         waits = new Waits();
-        browserAction = BrowserAction.getInstance();
+//        browserAction = BrowserAction.getInstance();  deprecated
     }
 
 
@@ -29,8 +30,8 @@ public class GreenkartLoginActions implements AbstractActions<GreenkartLoginActi
     }
 
     public GreenkartLoginActions navigateToBaseUrl() {
-        browserAction
-                .navigateTo(Config.getBaseUrl());
+        DriverActions
+                .navigate().navigateTo(Config.getBaseUrl());
 
         return this;
     }

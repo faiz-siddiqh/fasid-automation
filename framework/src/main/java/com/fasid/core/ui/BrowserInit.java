@@ -9,7 +9,8 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.xml.XmlTest;
+
+import static com.fasid.core.ui.utils.ReportManager.getReportManager;
 
 public class BrowserInit {
 
@@ -18,7 +19,7 @@ public class BrowserInit {
     private static List<WebDriverThread> threadLocalDriverPool = Collections.synchronizedList(new LinkedList<>());
 
     @BeforeSuite(alwaysRun = true)
-    public static void initDriver(final XmlTest test) throws ConfigurationException {
+    public static void initDriver( ) throws ConfigurationException {
         Config.getInstance();
         primaryThreadLocalDriver = ThreadLocal.withInitial(() -> {
             final WebDriverThread primaryWebDriverThread = new WebDriverThread();
@@ -56,6 +57,7 @@ public class BrowserInit {
             primaryThreadLocalDriver.remove();
             secondThreadLocalDriver.remove();
         }));
+        getReportManager().getExtentReport().flush();
     }
 
 }

@@ -33,7 +33,7 @@ test {
             if (System.getProperty("excludeGroups") != null) {
                 includeGroups System.getProperty("exclude").toString()
             }
-
+            setSuiteName System.getProperty("suiteName","Greenkart-UI Test")
             listeners <<"com.fasid.core.ui.listeners.retry.RetryTestsListener"
 
         }

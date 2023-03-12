@@ -17,16 +17,21 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.Logger;
 import org.testng.util.Strings;
+
+import static com.google.gson.JsonParser.parseString;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.apache.logging.log4j.LogManager.getLogger;
 
 public class JsonUtils {
 
     private static GsonBuilder gson;
     private static ObjectMapper objectMapper;
-    private static DocumentContext jsonContext;
+    private static Logger LOGGER = getLogger();
 
     private JsonUtils() {
         //private constructor to avoid instantiation
@@ -116,6 +121,25 @@ public class JsonUtils {
         }
 
         return null;
+    }
+
+    /**
+     * This method converts a json into readable pretty JSON
+     *
+     * @param data : The JSON data to be changed
+     * @return The data in a pretty format
+     */
+    public static String toPrettyString(final String data) {
+        LOGGER.traceEntry();
+        if (StringUtils.isEmpty(data)) {
+            return EMPTY;
+        }
+        try {
+            final var object = parseString(data).getAsJsonObject();
+            return LOGGER.traceExit(getInstance().create().toJson(object));
+        } catch (final IllegalStateException e) {
+            return data;
+        }
     }
 
 }

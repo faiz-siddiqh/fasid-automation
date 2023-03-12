@@ -51,7 +51,7 @@ public class Config {
         return getEnv() + ".properties";
     }
 
-    private static String getEnv() {
+    public static String getEnv() {
         if (System.getProperty("env", "local") == null) {
             throw new IllegalArgumentException("Environment not found- aborting run");
         }
@@ -182,6 +182,14 @@ public class Config {
         }
 
         return Run.LOCAL;
+    }
+
+    public static boolean isHighlighted() {
+        if (Objects.nonNull(System.getProperty("highlighted"))) {
+            return Boolean.parseBoolean(getProperty("highlighted"));
+        }
+
+        return false;
     }
 
     public static String getAppiumServerUrl() {
