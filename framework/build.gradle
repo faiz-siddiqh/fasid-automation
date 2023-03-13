@@ -5,7 +5,7 @@ plugins {
 group 'com.fasid.automation'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility =JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
@@ -24,14 +24,30 @@ dependencies {
 }
 
 
-test{
-    doFirst{
+test {
+    doFirst {
         systemProperties System.properties
     }
 
-    useTestNG{
-        useDefaultListeners =false
-        outputDirectory=file("$buildDir/test-output")
+    useTestNG {
+        useDefaultListeners = false
+        outputDirectory = file("$buildDir/test-output")
+        suites("$buildDir/framework/src/test/resources/testng.xml")
+
+        includeGroups 'smoke'
+        options {
+            parallel System.getProperty("parallel", "classes").toString()
+            threadCount System.getProperty("threads", "1").toInteger()
+            if (System.getProperty("includeGroups") != null) {
+                includeGroups System.getProperty("includeGroups").toString()
+            }
+            if (System.getProperty("excludeGroups") != null) {
+                includeGroups System.getProperty("exclude").toString()
+            }
+            setSuiteName System.getProperty("suiteName", "Greenkart-UI Test")
+            listeners << "com.fasid.core.ui.listeners.retry.RetryTestsListener"
+
+        }
     }
 }
 

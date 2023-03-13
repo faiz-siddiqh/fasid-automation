@@ -3,6 +3,8 @@ package com.fasid.core.ui;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import com.fasid.config.Config;
@@ -10,6 +12,7 @@ import com.fasid.core.ui.browsers.Browser;
 import com.fasid.core.ui.browsers.HasService;
 import com.fasid.core.ui.browsers.desktop.Chrome;
 import com.fasid.core.ui.browsers.desktop.Firefox;
+import com.fasid.core.ui.exception.FrameworkError;
 import com.fasid.enums.BrowserTypes;
 import com.fasid.enums.Run;
 import com.fasid.logger.TestLogger;
@@ -22,6 +25,7 @@ public class WebDriverThread {
 
     private WebDriver webDriver;
     private Browser<Capabilities> browsers;
+    public static Map<String, Object> sharedData;
 
     public WebDriver getDriver() {
         if (Objects.isNull(webDriver)) {
@@ -35,6 +39,8 @@ public class WebDriverThread {
             if (!runType.equals(Run.MOBILE) && !runType.equals(Run.DEVICE)) {
                 Browser.setWindowSize(webDriver);
             }
+
+            sharedData = new HashMap<>();
         }
 
         return webDriver;
@@ -59,7 +65,7 @@ public class WebDriverThread {
                     service = ((HasService) browsers).startService();
                     webDriver = ((HasService) browsers).getLocalDriver(service, options);
                 } else {
-                    throw new RuntimeException("Selected Browser doesnt have service to be executed");
+                    throw new RuntimeException("Selected Browser doesn't have service to be executed");
                 }
             }
         } catch (IOException exception) {
@@ -93,6 +99,39 @@ public class WebDriverThread {
                 throw new InvalidArgumentException("Invalid Argument - Please check browser Name");
         }
 
+    }
+
+    /**
+     * Clears all the shared data for the session
+     */
+    public static void clearSharedData() {
+        sharedData.clear();
+    }
+
+    /**
+     * get a value from the shared data
+     *
+     * @param key
+     * @param <T>
+     * @return shared data value
+     */
+    public static <T> T getSharedData(final String key) {
+        if (Objects.isNull(sharedData)) {
+            throw new FrameworkError("Shared Data map not initialized . Session not active");
+        }
+
+        return (T) sharedData.get(key);
+    }
+
+    /**
+     * This method is used to set /add a value to the shared data
+     *
+     * @param key
+     * @param data
+     * @param <T>  Type of Data
+     */
+    public static <T> void setSharedData(final String key, final T data) {
+        sharedData.put(key, data);
     }
 
     void quitDriver() {

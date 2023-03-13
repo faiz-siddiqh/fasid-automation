@@ -13,10 +13,8 @@ import org.openqa.selenium.interactions.Actions;
 public class BrowserAction {
 
     private static BrowserAction INSTANCE;
-
     private TakesScreenshot screenshot;
     private WebDriver driver;
-
     private JavascriptExecutor js;
     private Waits waits;
     private ThreadLocal<Actions> actions;

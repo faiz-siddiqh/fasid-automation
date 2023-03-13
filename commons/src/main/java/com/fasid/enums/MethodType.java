@@ -5,6 +5,9 @@ public enum MethodType {
     GET,
     POST,
     DELETE,
-    PUT;
+    PUT,
 
+    PATCH,
+
+    TRACE
 }

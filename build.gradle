@@ -9,8 +9,8 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = JavaVersion.VERSION_11
 
-subprojects{
-    apply plugin:"checkstyle"
+subprojects {
+    apply plugin: "checkstyle"
 
     checkstyle {
         toolVersion = '8.42'
@@ -48,6 +48,9 @@ ext.libraries = [
         json                  : 'org.json:json:20090211',
 
         //logging
-        apache_poi            : 'org.apache.poi:poi-ooxml:3.9'
+        apache_poi            : 'org.apache.poi:poi-ooxml:3.9',
+        log4j                 : 'org.apache.logging.log4j:log4j-core:2.17.2',
+        log4j_api             : 'org.apache.logging.log4j:log4j-api:2.17.2',
+        relevantcodes         : 'com.aventstack:extentreports:5.0.9'
 
 ]

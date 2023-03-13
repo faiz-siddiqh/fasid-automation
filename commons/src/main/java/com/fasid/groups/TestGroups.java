@@ -9,7 +9,7 @@ public class TestGroups {
 
     public static final String FASID = "fasid";
 
-
+    public static final String FRAMEWORK_UNITTEST = "unittest" ;
     public static final String GREENKART = "greenkart";
     public static final String WEATHER_API = "weatherapi";
 }

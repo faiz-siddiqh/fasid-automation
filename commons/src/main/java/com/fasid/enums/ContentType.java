@@ -2,6 +2,8 @@ package com.fasid.enums;
 
 public enum ContentType {
 
+    PLAIN_TEXT("text/plain"),
+    FORM_URLENCODED("application/x-www-form-urlencoded"),
     APPLICATION_JSON("application/json");
 
     final String contentType;
