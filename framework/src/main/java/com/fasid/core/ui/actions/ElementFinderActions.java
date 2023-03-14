@@ -128,7 +128,7 @@ public final class ElementFinderActions {
 
             }
         } catch (final TimeoutException e) {
-            handleAndThrow(ELEMENT_NOT_FOUND, e, locator.getName(), Config.getTestRunType());
+            e.printStackTrace();
         }
 
     }

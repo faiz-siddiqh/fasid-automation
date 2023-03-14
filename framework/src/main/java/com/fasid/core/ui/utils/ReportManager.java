@@ -100,7 +100,6 @@ public class ReportManager {
                 extentTest.log(Status.WARNING, "Test result not recognized");
                 break;
         }
-        getExtentReport().flush();
     }
 
     /**
