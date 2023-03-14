@@ -15,11 +15,12 @@ import static com.fasid.core.ui.utils.ReportManager.getReportManager;
 
 public class AbstractUITest extends BrowserInit {
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void CreateReporter(ITestContext context) {
-        String className = context.getCurrentXmlTest().getClasses().get(0).getName();
+        String className = context.getSuite().getName();
         getReportManager().createExtentReportInstance(className);
     }
+
     @BeforeMethod(alwaysRun = true)
     public void initReports(Method method, Object[] parameters) {
 
@@ -28,7 +29,7 @@ public class AbstractUITest extends BrowserInit {
 
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void flushReports(ITestResult result) {
         saveLogs();
         getReportManager().cleanUp(result);

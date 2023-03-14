@@ -1,5 +1,7 @@
 package com.fasid.core.ui.actions;
 
+import java.time.Duration;
+
 import com.fasid.core.ui.utils.ReportManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -57,6 +59,7 @@ public class NavigateActions {
 
         LOGGER.traceEntry();
         ReportManager.logInfo(format("Navigating to {0}", URL));
+        DriverActions.pause(Duration.ofMillis(1000));
         performWebDriverAction(webDriver -> webDriver.navigate().to(URL));
         LOGGER.traceExit();
     }
