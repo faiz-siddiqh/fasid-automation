@@ -14,17 +14,18 @@ import static com.fasid.tests.ui.theinternet.pages.DragDropPage.dragDropPage;
  * Drag and drop test.
  */
 public class DragDropTest extends AbstractUITest {
-    private static final String URL = "https://webdriveruniversity.com/Actions/index.html";
 
-    @BeforeClass(description = "Setup test classes")
+    @BeforeClass(alwaysRun = true,description = "Setup test classes")
     public void setUpClass() {
+
+        final String URL = "https://webdriveruniversity.com/Actions/index.html";
         navigate().navigateTo(URL);
     }
 
     /**
      * Drag and Drop test.
      */
-    @Test(description = "Drag Drop test",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Drag Drop test", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testDragDrop() {
         dragAndDrop(dragDropPage().getDraggable(), dragDropPage().getDroppable());
         verifyTextOf(dragDropPage().getHeader(), "Dropped!");

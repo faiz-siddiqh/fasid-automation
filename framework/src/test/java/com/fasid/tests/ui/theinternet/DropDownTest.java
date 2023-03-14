@@ -17,17 +17,17 @@ import static com.fasid.tests.ui.theinternet.pages.DropDownPage.dropDownPage;
  * @since 30-Jul-2022
  */
 public class DropDownTest extends AbstractUITest {
-    private static final String URL = "https://letcode.in/dropdowns";
 
-    @BeforeClass(description = "Setup test classes")
+    @BeforeClass(alwaysRun = true,description = "Setup test classes")
     public void setUpClass() {
+        final String URL = "https://letcode.in/dropdowns";
         navigate().navigateTo(URL);
     }
 
     /**
      * Test dropdown deselect all.
      */
-    @Test(description = "Verify deselect all dropdown values",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Verify deselect all dropdown values", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testDeselectAll() {
         selectByIndex(dropDownPage().getSuperHeroes(), 3);
         selectByIndex(dropDownPage().getSuperHeroes(), 4);
@@ -71,7 +71,7 @@ public class DropDownTest extends AbstractUITest {
     /**
      * Test multiple select.
      */
-    @Test(description = "Verify multi select dropdown values",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Verify multi select dropdown values", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testMultiSelect() {
         selectByValue(dropDownPage().getSuperHeroes(), "ta");
         selectByIndex(dropDownPage().getSuperHeroes(), 3);
@@ -81,7 +81,7 @@ public class DropDownTest extends AbstractUITest {
     /**
      * Test select by index.
      */
-    @Test(description = "Verify select dropdown value by index",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Verify select dropdown value by index", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testSelectByIndex() {
         selectByIndex(dropDownPage().getFruits(), 3);
         Asserts.assertEquals(getSelectedItem(dropDownPage().getFruits()), "Orange", "Error !!  Values don't match");
@@ -90,7 +90,7 @@ public class DropDownTest extends AbstractUITest {
     /**
      * Test select by text.
      */
-    @Test(description = "Verify select dropdown value by text",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Verify select dropdown value by text", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testSelectByText() {
         selectByText(dropDownPage().getFruits(), "Apple");
         Asserts.assertEquals(getSelectedItem(dropDownPage().getFruits()), "Apple", "Error !!  Values don't match");
@@ -99,7 +99,7 @@ public class DropDownTest extends AbstractUITest {
     /**
      * Test select by value.
      */
-    @Test(description = "Verify select dropdown value by value",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Verify select dropdown value by value", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testSelectByValue() {
         selectByValue(dropDownPage().getFruits(), "1");
         Asserts.assertEquals(getSelectedItem(dropDownPage().getFruits()), "Mango", "Error !! Values don't match");

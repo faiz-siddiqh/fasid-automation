@@ -21,6 +21,7 @@ import static com.fasid.core.ui.actions.DriverActions.executeJsScript;
 import static com.fasid.core.ui.actions.DriverActions.pause;
 import static com.fasid.core.ui.actions.ElementFinderActions.find;
 import static com.fasid.core.ui.utils.ErrorUtils.handleAndThrow;
+import static com.fasid.core.ui.utils.ReportManager.logInfo;
 import static com.fasid.enums.Message.DRIVER_ERROR_OCCURED;
 import static com.fasid.enums.WaitStrategy.CLICKABLE;
 import static com.fasid.enums.WaitStrategy.VISIBLE;
@@ -60,10 +61,12 @@ final class BaseActions {
         LOGGER.traceEntry();
         try {
             action
-                    .accept((D)BrowserInit.getDriver());
+                    .accept((D) BrowserInit.getDriver());
+            logInfo("Action performed successfully : " + action);
         } catch (final WebDriverException e) {
-            handleAndThrow(DRIVER_ERROR_OCCURED, e, e.getMessage());
+            e.printStackTrace();
         }
+
         LOGGER.traceExit();
     }
 

@@ -30,11 +30,8 @@ test {
     }
 
     useTestNG {
-        useDefaultListeners = false
+        useDefaultListeners = true
         outputDirectory = file("$buildDir/test-output")
-        suites("$buildDir/framework/src/test/resources/testng.xml")
-
-        includeGroups 'smoke'
         options {
             parallel System.getProperty("parallel", "classes").toString()
             threadCount System.getProperty("threads", "1").toInteger()
@@ -44,7 +41,7 @@ test {
             if (System.getProperty("excludeGroups") != null) {
                 includeGroups System.getProperty("exclude").toString()
             }
-            setSuiteName System.getProperty("suiteName", "Greenkart-UI Test")
+            setSuiteName System.getProperty("suiteName", "Framework - Unit Tests")
             listeners << "com.fasid.core.ui.listeners.retry.RetryTestsListener"
 
         }

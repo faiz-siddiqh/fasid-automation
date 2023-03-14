@@ -1,5 +1,6 @@
 package com.fasid.tests.ui.theinternet;
 
+import com.fasid.config.Config;
 import com.fasid.groups.TestGroups;
 import com.fasid.tests.ui.AbstractUITest;
 import org.testng.annotations.BeforeClass;
@@ -17,18 +18,17 @@ import static java.text.MessageFormat.format;
  * Hover mouse test
  */
 public class HoverTest extends AbstractUITest {
-    private static final String URL = "https://the-internet.herokuapp.com/";
 
-    @BeforeClass(description = "Setup test classes")
+    @BeforeClass(alwaysRun = true,description = "Setup test classes")
     public void setUpClass() {
-        navigate().navigateTo(URL);
+        navigate().navigateTo(Config.getAppUrl());
         clickOn(homePage().link("Hovers"));
     }
 
     /**
      * Hover mouse test.
      */
-    @Test(description = "Hover mouse test",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Hover mouse test",groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testMouseHover() {
         final var expectedUserName = "name: user1";
         hoverOver(hoverPage().userImage(0));
