@@ -1,6 +1,7 @@
 package com.fasid.tests.ui.theinternet;
 
 import com.fasid.assertions.Asserts;
+import com.fasid.config.Config;
 import com.fasid.core.ui.waits.Waits;
 import com.fasid.groups.TestGroups;
 import com.fasid.tests.ui.AbstractUITest;
@@ -20,27 +21,26 @@ import static org.openqa.selenium.WindowType.TAB;
  * Browser window specific tests.
  */
 public class WindowTest extends AbstractUITest {
-    private static final String URL = "https://the-internet.herokuapp.com/";
 
-    @BeforeClass(description = "Setup test classes")
+    @BeforeClass(alwaysRun = true,description = "Setup test classes")
     public void setUpClass() {
-        navigate().navigateTo(URL);
+        navigate().navigateTo(Config.getAppUrl());
         clickOn(homePage().link("Multiple Windows"));
     }
 
     /**
      * Test case to verify browser back navigation.
      */
-    @Test(description = "Test browser back navigation", groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Test browser back navigation", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testBackNavigation() {
         navigate().back();
-        verifyBrowserUrl(URL);
+        verifyBrowserUrl(Config.getAppUrl());
     }
 
     /**
      * Test case to verify execute script.
      */
-    @Test(description = "Test execute script method", groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Test execute script method", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testExecuteScript() {
         final String script = "alert('Hello World');";
         executeJsScript(script);
@@ -50,16 +50,16 @@ public class WindowTest extends AbstractUITest {
     /**
      * Test case to verify browser forward navigation.
      */
-    @Test(description = "Test browser forward navigation", groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Test browser forward navigation", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testForwardNavigation() {
         navigate().forward();
-        verifyBrowserUrl(format("{0}windows", URL));
+        verifyBrowserUrl(format("{0}windows", Config.getAppUrl()));
     }
 
     /**
      * Test case to verify opening new tab window.
      */
-    @Test(description = "Test to verify opening new tab", groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Test to verify opening new tab", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testOpenNewTab() {
         try {
             switchToNewWindow(TAB);
@@ -73,8 +73,9 @@ public class WindowTest extends AbstractUITest {
     /**
      * Test case to verify opening new window.
      */
-    @Test(description = "Check New window Open functionality",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Check New window Open functionality", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testOpenWindow() {
+        final var URL = Config.getAppUrl();
         final var currentWindow = getCurrentHandle();
         clickOn(multiWindowPage().getClickHere());
         final var newWindow = windowHandles().stream()
@@ -92,8 +93,9 @@ public class WindowTest extends AbstractUITest {
     /**
      * Test case to verify browser refresh.
      */
-    @Test(description = "Test to verify page refresh", groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Test to verify page refresh", groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testRefreshPage() {
+        final var URL = Config.getAppUrl();
         navigate().refresh();
         verifyBrowserUrl(format("{0}windows", URL));
     }

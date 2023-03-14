@@ -1,6 +1,7 @@
 package com.fasid.tests.ui.theinternet;
 
 import com.fasid.assertions.Asserts;
+import com.fasid.config.Config;
 import com.fasid.groups.TestGroups;
 import com.fasid.tests.ui.AbstractUITest;
 import org.testng.annotations.BeforeClass;
@@ -14,18 +15,16 @@ import static com.fasid.tests.ui.theinternet.pages.HomePage.homePage;
 
 public class AlertTest extends AbstractUITest {
 
-    private static final String URL = "https://the-internet.herokuapp.com/";
-
-    @BeforeClass(description = "Setup test classes")
+    @BeforeClass(description = "Setup test classes", alwaysRun = true)
     public void setUpClass() {
-        navigate().navigateTo(URL);
+        navigate().navigateTo(Config.getAppUrl());
         clickOn(homePage().link("JavaScript Alerts"));
     }
 
     /**
      * This will test Accept alert button action.
      */
-    @Test(description = "Tests Accept alert",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Tests Accept alert", groups = {TestGroups.FRAMEWORK_UNIT_TEST, TestGroups.TESTS})
     public void testAcceptAlert() {
         clickOn(alertPage().getAlertButton());
         Asserts.assertEquals(acceptAlert(), "I am a JS Alert", "Error !! Please check the values");
@@ -35,7 +34,7 @@ public class AlertTest extends AbstractUITest {
     /**
      * This will test accept confirm button action.
      */
-    @Test(description = "Tests Accept confirm alert",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Tests Accept confirm alert", groups = {TestGroups.FRAMEWORK_UNIT_TEST, TestGroups.TESTS})
     public void testAcceptConfirmAlert() {
         clickOn(alertPage().getConfirmButton());
         Asserts.assertEquals(acceptAlert(), "I am a JS Confirm", "Error !! Please check the values");
@@ -45,7 +44,7 @@ public class AlertTest extends AbstractUITest {
     /**
      * This will test dismiss confirm button action.
      */
-    @Test(description = "Tests Dismiss confirm alert",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Tests Dismiss confirm alert", groups = {TestGroups.FRAMEWORK_UNIT_TEST, TestGroups.TESTS})
     public void testDismissConfirmAlert() {
         clickOn(alertPage().getConfirmButton());
         Asserts.assertEquals(dismissAlert(), "I am a JS Confirm", "Error !! Please check the values");
@@ -55,7 +54,7 @@ public class AlertTest extends AbstractUITest {
     /**
      * This will test dismiss confirm button action.
      */
-    @Test(description = "Tests Dismiss prompt alert",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Tests Dismiss prompt alert", groups = {TestGroups.FRAMEWORK_UNIT_TEST, TestGroups.TESTS})
     public void testDismissPromptAlert() {
         clickOn(alertPage().getPromptButton());
         Asserts.assertEquals(acceptAlertAndEnterText("Fasid"), "I am a JS prompt", "Error !! Please check the values");

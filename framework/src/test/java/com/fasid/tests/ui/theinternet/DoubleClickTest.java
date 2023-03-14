@@ -12,23 +12,21 @@ import static com.fasid.core.ui.actions.ElementActions.verifyTextOf;
 import static com.fasid.core.ui.actions.MouseActions.*;
 import static com.fasid.tests.ui.theinternet.pages.DoubleClickPage.doubleClickPage;
 
-
 /**
  * Drag and drop test.
  */
 public class DoubleClickTest extends AbstractUITest {
 
-    private static final String URL = "https://webdriveruniversity.com/Actions/index.html";
-
-    @BeforeClass(description = "Setup test classes")
+    @BeforeClass(alwaysRun = true,description = "Setup test classes")
     public void setUpClass() {
+        final String URL = "https://webdriveruniversity.com/Actions/index.html";
         navigate().navigateTo(URL);
     }
 
     /**
      * Test click and hold method.
      */
-    @Test(description = "Verify Click and Hold method",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Verify Click and Hold method",groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testClickAndHold() {
         clickAndHold(doubleClickPage().getClickHold());
         verifyTextOf(doubleClickPage().getClickHold(),"Well done! keep holding that click now.....");
@@ -37,7 +35,7 @@ public class DoubleClickTest extends AbstractUITest {
     /**
      * Double click test.
      */
-    @Test(description = "Double click test",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Double click test",groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testDoubleClick() {
         doubleClickOn(doubleClickPage().getDoubleClick());
     }
@@ -45,7 +43,7 @@ public class DoubleClickTest extends AbstractUITest {
     /**
      * Test hover and click method.
      */
-    @Test(description = "Verify Click and Hold method",groups = TestGroups.FRAMEWORK_UNITTEST)
+    @Test(description = "Verify Click and Hold method",groups = TestGroups.FRAMEWORK_UNIT_TEST)
     public void testHoverAndClick() {
         hoverOver(doubleClickPage().getHoverButton());
         clickOn(doubleClickPage().getHoverMenu());
