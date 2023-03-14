@@ -140,7 +140,7 @@ public class Config {
             return BrowserTypes.valueOf(System.getProperty("browser").toUpperCase());
         }
 
-        return BrowserTypes.CHROME;
+        return BrowserTypes.FIREFOX;
     }
 
     public static String determineEffectiveBrowserVersion() {
