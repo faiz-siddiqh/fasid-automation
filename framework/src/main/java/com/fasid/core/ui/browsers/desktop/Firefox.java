@@ -58,7 +58,7 @@ public class Firefox implements Browser<Capabilities>, HasService<WebDriver, Dri
     public DriverService startService() throws IOException {
 
         if (Objects.isNull(geckoDriverService)) {
-            WebDriverManager.chromedriver().setup();
+            WebDriverManager.firefoxdriver().setup();
             geckoDriverService = new GeckoDriverService.Builder()
                     .usingDriverExecutable(new File(WebDriverManager.firefoxdriver().getDownloadedDriverPath()))
                     .usingAnyFreePort()
